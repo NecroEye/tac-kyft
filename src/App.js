@@ -1,44 +1,27 @@
-import Directory from "./components/directory/directory.component";
+import {Home} from "./components/routes/home/home.component"
+import {Routes, Route} from "react-router-dom";
+import {Navigation} from "./components/routes/navigation/navigation.component"
+
+
+const Shop = () => {
+
+    return (
+        <h1>Selam burası markettir</h1>
+    )
+}
 
 const App = () => {
 
-    const categories = [
-        {
-            id: 1,
-            title: "Şapkalar",
-            subTitle: "Ürünlere Göz At",
-            image: "https://i.ibb.co/cvpntL1/hats.png"
-        },
-        {
-            id: 2,
-            title: "Çeketler",
-            subTitle: "Ürünlere Göz At",
-            image: "https://i.ibb.co/px2tCc3/jackets.png"
-        },
-        {
-            id: 3,
-            title: "Ayakkabılar",
-            subTitle: "Ürünlere Göz At",
-            image: "https://i.ibb.co/0jqHpnp/sneakers.png"
-        },
-        {
-            id: 4,
-            title: "Erkekler",
-            subTitle: "Ürünlere Göz At",
-            image: "https://i.ibb.co/R70vBrQ/men.png"
-        },
-        {
-            id: 5,
-            title: "Kadınlar",
-            subTitle: "Ürünlere Göz At",
-            image: "https://i.ibb.co/GCCdy8t/womens.png"
-        },
-    ]
-
     return (
+        <Routes>
+            <Route path={"/"} element={<Navigation/>}>
 
-            <Directory categories={categories}/>
+                <Route index element={<Home/>}/>
+                <Route path={"mağaza"} element={<Shop/>}/>
 
+            </Route>
+
+        </Routes>
     );
 }
 
