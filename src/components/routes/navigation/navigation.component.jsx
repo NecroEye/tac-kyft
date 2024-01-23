@@ -12,8 +12,11 @@ export const Navigation = () => {
                     <CrownLogo/>
                 </Link>
                 <div className={"nav-links-container"}>
-                    <Link className={"nav-link"} to={"/mağaza"}>
+                    <Link className={"nav-link"} to={"/magaza"}>
                         Mağaza
+                    </Link>
+                    <Link className={"nav-link"} to={"/uye-giris"}>
+                        Giriş Yap
                     </Link>
                 </div>
             </div>
