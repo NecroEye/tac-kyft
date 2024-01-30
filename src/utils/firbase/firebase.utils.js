@@ -12,6 +12,7 @@ import {
     getDoc,
     setDoc
 } from "firebase/firestore"
+import {Exception} from "sass";
 
 
 const firebaseConfig = {
@@ -28,26 +29,50 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-const provider = new GoogleAuthProvider()
-provider.setCustomParameters({
+const googleProvider = new GoogleAuthProvider()
+googleProvider.setCustomParameters({
     prompt: "select_account"
 });
 
 
 export const author = getAuth()
-export const signInWithGooglePopup = () => signInWithPopup(author, provider)
+export const signInWithGooglePopup = () => signInWithPopup(author, googleProvider)
+export const signInWithGoogleRedirect = () => signInWithRedirect(author, googleProvider)
 
 export const db = getFirestore()
 
-export const createUserDocumentFromAuth = async (userAuth) =>{
+export const createUserDocumentFromAuth = async (userAuth) => {
 
-const UserDocRef = doc(db,"users", userAuth.uid)
+    const UserDocRef = doc(db, "users", userAuth.uid)
 
     console.log(UserDocRef)
 
     const userSnapshot = await getDoc(UserDocRef)
     console.log(userSnapshot)
     console.log(userSnapshot.exists())
+    if (!userSnapshot.exists()) {
 
+        const {displayName, email} = userAuth
+        const createdAt = new Date()
+
+
+        try {
+
+            await setDoc(UserDocRef, {
+                displayName,
+                email,
+                createdAt
+            })
+
+
+        } catch (error) {
+
+            console.log("The user not exist ", error.message)
+
+
+        }
+    }
+
+    return UserDocRef
 
 }
