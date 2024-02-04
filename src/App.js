@@ -2,14 +2,9 @@ import {Home} from "./components/routes/home/home.component"
 import {Routes, Route} from "react-router-dom";
 import {Navigation} from "./components/routes/navigation/navigation.component"
 import {SignIn} from "./components/sign-in/sign-in.component";
+import Shop from "./components/routes/shop/shop.component";
 
 
-const Shop = () => {
-
-    return (
-        <h1>Selam burası markettir</h1>
-    )
-}
 
 const App = () => {
 
