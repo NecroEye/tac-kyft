@@ -1,9 +1,14 @@
 import {Outlet, Link} from "react-router-dom";
-import {Fragment} from "react";
+import {Fragment, useContext} from "react";
+import CartDropdownComponent from "../../cart-dropdown/cart-dropdown.component";
+import CartIconComponent from "../../cart-icon/cart-icon.component";
 import {ReactComponent as CrownLogo} from "../../../assets/crown.svg";
 import "./navigation.styles.scss"
+import {CartContext} from "../../../contexts/cart.context";
 
 export const Navigation = () => {
+
+    const {isCartOpen} = useContext(CartContext)
 
     return (
         <Fragment>
@@ -18,7 +23,9 @@ export const Navigation = () => {
                     <Link className={"nav-link"} to={"/uye-giris"}>
                         Giriş Yap
                     </Link>
+                    <CartIconComponent/>
                 </div>
+                {isCartOpen && <CartDropdownComponent/>}
             </div>
             <Outlet/>
         </Fragment>
