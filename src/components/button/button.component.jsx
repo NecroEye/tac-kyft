@@ -1,11 +1,12 @@
 import "./button.styles.css"
 
 
-const ButtonComponent = ({children, buttonType}) => {
+const ButtonComponent = ({children, buttonType, onClick}) => {
 
     return (
         <button type={buttonType}
-                className={"button-container"}>
+                className={"button-container"}
+                onClick={onClick}>
             {children}
         </button>
     )
